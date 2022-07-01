@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Person {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private long id;
 
     @Column
     private String name;
