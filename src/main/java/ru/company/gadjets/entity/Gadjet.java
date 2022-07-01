@@ -20,5 +20,5 @@ public class Gadjet {
     private String model;
 
     @Column(nullable = false)
-    private int user_id;
+    private Integer user_id;
 }
