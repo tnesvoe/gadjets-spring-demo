@@ -1,10 +1,10 @@
-package ru.company.gadjets;
+package ru.company.devices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GadjetsApplicationTests {
+class DevicesApplicationTests {
 
 	@Test
 	void contextLoads() {

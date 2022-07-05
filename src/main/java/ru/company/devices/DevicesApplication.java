@@ -1,13 +1,13 @@
-package ru.company.gadjets;
+package ru.company.devices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GadjetsApplication {
+public class DevicesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GadjetsApplication.class, args);
+		SpringApplication.run(DevicesApplication.class, args);
 	}
 
 }
