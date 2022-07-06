@@ -3,6 +3,7 @@ package ru.company.devices.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.company.devices.entity.Device;
+import ru.company.devices.exceptions.DeviceNotFoundException;
 import ru.company.devices.repository.DeviceRepository;
 
 import java.util.List;
@@ -14,18 +15,18 @@ public class DeviceController {
     DeviceRepository deviceRepository;
 
     @GetMapping("/devices")
-    List<Device> devices() {
+    List<Device> findAll() {
         return deviceRepository.findAll();
     }
 
     @PostMapping("/devices")
-    Device newDevice(@RequestBody Device newDevice) {
+    Device postNewDevice(@RequestBody Device newDevice) {
         return deviceRepository.save(newDevice);
     }
 
     @GetMapping("/devices/{id}")
-    Device device(@PathVariable long id) {
-        return deviceRepository.findById(id).orElseThrow();
+    Device getDevice(@PathVariable long id) {
+        return deviceRepository.findById(id).orElseThrow(() -> new DeviceNotFoundException(id));
     }
 
     @PutMapping("/devices/{id}")
