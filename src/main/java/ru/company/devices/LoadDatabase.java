@@ -24,7 +24,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initUser(UserRepository repository) {
         return args -> {
-            log.info(new DeviceUser("Муромец", "Илья", "сын Ивана") + " загружен");
+            log.info(repository.save(new DeviceUser("surname", "name", "thirdName")) + " загружен");
         };
     }
 }
