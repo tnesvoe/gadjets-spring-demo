@@ -14,14 +14,14 @@ public class DeviceController {
     @Autowired
     DeviceRepository deviceRepository;
 
-    @GetMapping("/devices")
-    List<Device> findAll() {
-        return deviceRepository.findAll();
+    @PostMapping("/devices")
+    Device addNewDevice(@RequestBody Device newDevice) {
+        return deviceRepository.save(newDevice);
     }
 
-    @PostMapping("/devices")
-    Device postNewDevice(@RequestBody Device newDevice) {
-        return deviceRepository.save(newDevice);
+    @GetMapping("/devices")
+    List<Device> getAllDevices() {
+        return deviceRepository.findAll();
     }
 
     @GetMapping("/devices/{id}")

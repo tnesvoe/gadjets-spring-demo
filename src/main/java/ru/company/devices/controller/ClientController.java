@@ -11,42 +11,41 @@ import java.util.List;
 @RequestMapping("/api")
 public class ClientController {
     @Autowired
-    ClientRepository userRepository;
+    ClientRepository clientRepo;
 
-    @GetMapping("/users")
+    @GetMapping("/clients")
     List<Client> getAll() {
-        return userRepository.findAll();
+        return clientRepo.findAll();
     }
 
-    @GetMapping("/users/{id}")
-    Client getUser(@PathVariable Long id) {
-        return userRepository.findById(id).orElseThrow();
+    @GetMapping("/clients/{id}")
+    Client getClient(@PathVariable Long id) {
+        return clientRepo.findById(id).orElseThrow();
     }
 
-    @PostMapping("/users")
-    Client addUser(@RequestBody Client deviceUser) {
-        return userRepository.save(deviceUser);
+    @PostMapping("/clients")
+    Client addClient(@RequestBody Client client) {
+        return clientRepo.save(client);
     }
 
     // UPDATE USER
-    @PutMapping("/users/{id}")
-    Client putUser(@RequestBody Client userToUpdate, @PathVariable Long id) {
-        return userRepository
+    @PutMapping("/clients/{id}")
+    Client putClient(@RequestBody Client clientUpdate, @PathVariable Long id) {
+        return clientRepo
                 .findById(id)
-                .map(user -> {
-                            user.setName(userToUpdate.getName());
-                            user.setSurname(userToUpdate.getSurname());
-                            return userRepository.save(user);
-                        }
-                )
+                .map(client -> {
+                    client.setName(clientUpdate.getName());
+                    client.setSurname(clientUpdate.getSurname());
+                    return clientRepo.save(client);
+                })
                 .orElseGet(() -> {
-                    userToUpdate.setId(id);
-                    return userRepository.save(userToUpdate);
+                    clientUpdate.setId(id);
+                    return clientRepo.save(clientUpdate);
                 });
     }
 
-    @DeleteMapping("/users/{id}")
-    void delUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+    @DeleteMapping("/clients/{id}")
+    void delClient(@PathVariable Long id) {
+        clientRepo.deleteById(id);
     }
 }

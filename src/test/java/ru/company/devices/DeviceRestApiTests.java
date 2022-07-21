@@ -28,4 +28,9 @@ public class DeviceRestApiTests {
         HttpResponse<String> response = serveClient("http://localhost:8080/");
         Assertions.assertEquals(response.statusCode(), 200);
     }
+
+    @Test
+    void testDevices() {
+        HttpUriRequest
+    }
 }
