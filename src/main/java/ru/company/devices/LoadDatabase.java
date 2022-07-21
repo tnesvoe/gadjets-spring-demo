@@ -6,9 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.company.devices.entity.Device;
-import ru.company.devices.entity.DeviceUser;
+import ru.company.devices.entity.Client;
 import ru.company.devices.repository.DeviceRepository;
-import ru.company.devices.repository.UserRepository;
+import ru.company.devices.repository.ClientRepository;
 
 @Configuration
 public class LoadDatabase {
@@ -22,9 +22,12 @@ public class LoadDatabase {
     }
 
     @Bean
-    CommandLineRunner initUser(UserRepository repository) {
+    CommandLineRunner initUser(ClientRepository repository) {
         return args -> {
-            log.info(repository.save(new DeviceUser("surname", "name", "thirdName")) + " загружен");
+            log.info(repository.save(new Client("Стрелков Дональд Тимофеевич")) + " загружен");
+            log.info(repository.save(new Client("Сидоров Никифор Геннадиевич")) + " загружен");
         };
+
     }
+
 }
