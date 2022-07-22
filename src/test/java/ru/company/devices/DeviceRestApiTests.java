@@ -21,9 +21,6 @@ public class DeviceRestApiTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Autowired
-    private
-
     @Test
     void testEndpoints() throws ClientProtocolException, IOException {
         ResponseEntity<String> response = restTemplate.getForEntity("/", String.class);
@@ -46,8 +43,6 @@ public class DeviceRestApiTests {
     void testPut() {
         Device device = new Device("realme", "GT NEO2");
         ResponseEntity<String> responseOnPut;
-
-
 
         responseOnPut = restTemplate.exchange("/devices/1",
                 HttpMethod.PUT,

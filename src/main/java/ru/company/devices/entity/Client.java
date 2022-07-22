@@ -32,6 +32,14 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Device> devices;
 
+    public List<Device> getDevices() {
+        return this.devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
     public void setName(String name) {
      this.name = name;
     }
@@ -48,6 +56,13 @@ public class Client {
      this.name = name;
      this.surname = surname;
      this.thirdName = thirdName;
+    }
+
+    public Client(String surname, String name, String thirdName, List<Device> devices) {
+        this.name = name;
+        this.surname = surname;
+        this.thirdName = thirdName;
+        this.devices = devices;
     }
 
     public Client() {

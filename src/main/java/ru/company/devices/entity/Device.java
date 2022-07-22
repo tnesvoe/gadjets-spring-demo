@@ -22,6 +22,14 @@ public class Device {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return this.client;
+    }
+
     // девайсы без клиента или с клиентом
 
     public Device(String brand, String model) {
@@ -30,14 +38,14 @@ public class Device {
         this.client = null;
     }
 
-    public Device() {
-
-    }
-
     public Device(String brand, String model, Client client) {
         this.brand = brand;
         this.model = model;
         this.client = client;
+    }
+
+    public Device() {
+
     }
 
     public Long getId() {
