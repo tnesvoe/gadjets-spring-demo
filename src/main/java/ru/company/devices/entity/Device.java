@@ -1,9 +1,7 @@
 package ru.company.devices.entity;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.*;
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -21,15 +19,25 @@ public class Device {
 
     // Many devices to one client
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
+
+    // девайсы без клиента или с клиентом
+
+    public Device(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+        this.client = null;
+    }
 
     public Device() {
 
     }
 
-    public Device(String brand, String model) {
+    public Device(String brand, String model, Client client) {
         this.brand = brand;
         this.model = model;
+        this.client = client;
     }
 
     public Long getId() {

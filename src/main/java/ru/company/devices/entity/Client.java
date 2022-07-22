@@ -18,7 +18,7 @@ public class Client {
         return this.id;
     }
 
-
+        // owning side
 
     @Column(nullable = false)
     private String surname;
