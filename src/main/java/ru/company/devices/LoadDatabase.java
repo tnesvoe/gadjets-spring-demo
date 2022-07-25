@@ -14,12 +14,12 @@ import ru.company.devices.repository.ClientRepository;
 public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-    private Client client1 = new Client("Стрелков Дональд Тимофеевич");
-    private Client client2 = new Client("Сидоров Никифор Геннадиевич");
+    private Client client1 = new Client("Стрелков Дональд Тимофеевич", 79994445566L, "strelkov@memail.com");
+    private Client client2 = new Client("Сидоров Никифор Геннадиевич", 79955554433L, "sidoors@band.bam");
 
-    private Device device1 = new Device("brand1", "model1");
-    private Device device2 = new Device("brand2", "model2");
-    private Device device3 = new Device("brand3", "model3");
+    private Device device1 = new Device("notebook", "celeron 4020", 14.1, 2048, "brand1", "model1");
+    private Device device2 = new Device("smartphone", "snapdragon 888", 8, 2048, "brand2", "model2");
+    private Device device3 = new Device("pc", "amd athalone 3200", 27, 8192, "brand3", "model3");
 
     @Bean
     CommandLineRunner initUser(ClientRepository repository) {

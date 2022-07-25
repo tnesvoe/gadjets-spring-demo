@@ -3,6 +3,7 @@ package ru.company.devices.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.company.devices.entity.Client;
+import ru.company.devices.exceptions.ClientNotFoundException;
 import ru.company.devices.repository.ClientRepository;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ClientController {
 
     @GetMapping("/clients/{id}")
     Client getClient(@PathVariable Long id) {
-        return clientRepo.findById(id).orElseThrow();
+        return clientRepo.findById(id).orElseThrow(() -> new ClientNotFoundException(id));
     }
 
     @PostMapping("/clients")

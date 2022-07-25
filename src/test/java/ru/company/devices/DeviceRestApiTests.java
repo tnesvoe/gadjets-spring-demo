@@ -33,7 +33,7 @@ public class DeviceRestApiTests {
 
     @Test
     void testPost() {
-        Device device = new Device("Xiaomi 12 Pro", "12 Pro");
+        Device device = new Device("smartphone", "snapdragon 600", 8, 4096, "Xiaomi 12 Pro", "12 Pro");
         ResponseEntity<String> response = restTemplate.postForEntity("/devices", device, String.class);
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.CREATED);
@@ -41,7 +41,7 @@ public class DeviceRestApiTests {
 
     @Test
     void testPut() {
-        Device device = new Device("realme", "GT NEO2");
+        Device device = new Device("smartphone", "snapdragon 600", 8, 4096, "realme", "GT NEO2");
         ResponseEntity<String> responseOnPut;
 
         responseOnPut = restTemplate.exchange("/devices/1",
@@ -50,5 +50,10 @@ public class DeviceRestApiTests {
                 String.class);
 
         System.out.println(responseOnPut.getBody());
+    }
+
+    @Test
+    void testDelete() {
+        restTemplate.delete("/devices/1");
     }
 }
