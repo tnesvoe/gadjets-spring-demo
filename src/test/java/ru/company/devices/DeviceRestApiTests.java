@@ -55,5 +55,7 @@ public class DeviceRestApiTests {
     @Test
     void testDelete() {
         restTemplate.delete("/devices/1");
+
+        // ensure
     }
 }
