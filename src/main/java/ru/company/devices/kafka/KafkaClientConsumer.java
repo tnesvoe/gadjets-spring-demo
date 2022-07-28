@@ -6,28 +6,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import ru.company.devices.entity.Client;
 
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class KafkaConsumer {
+public class KafkaClientConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaClientConsumer.class);
     private CountDownLatch latch = new CountDownLatch(1);
 
-    private String msg;
+    private String newClient;
 
-    @KafkaListener(topics = "${test.topic}")
-    public void receive(ConsumerRecord<?, ?> consumerRecord) {
-
-        LOGGER.info("received msg='{}'", consumerRecord.toString());
-
-        msg = consumerRecord.toString();
+    @KafkaListener(topics = "${clients}")
+    public void receive(Client client) {
+        LOGGER.info("received client='{}'", client.toString());
         latch.countDown();
-    }
-
-    public String getMsg() {
-        return this.msg;
     }
 
     public CountDownLatch getLatch() {
