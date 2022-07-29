@@ -1,7 +1,6 @@
-package ru.company.devices.kafka;
+package ru.company.devices.kafka.client.consumer;
 
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,9 +10,9 @@ import ru.company.devices.entity.Client;
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class KafkaClientConsumer {
+public class ClientConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaClientConsumer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientConsumer.class);
     private CountDownLatch latch = new CountDownLatch(1);
 
     private String newClient;

@@ -1,17 +1,19 @@
-package ru.company.devices.kafka;
+package ru.company.devices.kafka.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 import ru.company.devices.entity.Client;
+import ru.company.devices.kafka.client.producer.ClientProducer;
 
 @RestController
 @RequestMapping(value = "/kafka")
-public class KafkaController {
-    private final KafkaClientProducer producer;
-
+@PropertySource(value={"classpath:application.properties"})
+public class KafkaClientController {
     @Autowired
-    public KafkaController(KafkaClientProducer producer) {
+    private final ClientProducer producer;
+
+    public KafkaClientController(ClientProducer producer) {
         this.producer = producer;
     }
 

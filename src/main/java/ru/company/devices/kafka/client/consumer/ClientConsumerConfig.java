@@ -1,10 +1,11 @@
-package ru.company.devices.kafka;
+package ru.company.devices.kafka.client.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @EnableKafka
 @Configuration
+@PropertySource(value={"classpath:application.properties"})
 public class ClientConsumerConfig {
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
@@ -48,7 +50,7 @@ public class ClientConsumerConfig {
     }
 
     @Bean
-    public KafkaClientConsumer consumer() {
-        return new KafkaClientConsumer();
+    public ClientConsumer consumer() {
+        return new ClientConsumer();
     }
 }

@@ -8,22 +8,21 @@ import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 import ru.company.devices.entity.Client;
-import ru.company.devices.kafka.KafkaClientConsumer;
-import ru.company.devices.kafka.KafkaClientProducer;
+import ru.company.devices.kafka.client.consumer.ClientConsumer;
+import ru.company.devices.kafka.client.producer.ClientProducer;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /* We also use the @DirtiesContext annotation, which will make sure this context is cleaned and reset between different tests. */
 @SpringBootTest
 @DirtiesContext
-@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
+@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9093", "port=9093" })
 public class KafkaTest {
     @Autowired
-    private KafkaClientConsumer consumer;
+    private ClientConsumer consumer;
 
     static {
         System.setProperty(EmbeddedKafkaBroker.BROKER_LIST_PROPERTY,
@@ -31,7 +30,7 @@ public class KafkaTest {
     }
 
     @Autowired
-    private KafkaClientProducer producer;
+    private ClientProducer producer;
 
     @Value("${clients}")
     private String topic;
@@ -39,9 +38,7 @@ public class KafkaTest {
     @Test
     public void testEmbeddedKafkaBroker()
             throws Exception {
-        String data = "Sending with our own simple KafkaProducer";
-
-        producer.send(topic, new Client("Сидоров Мастер Геннадиевич", 79955554433L, "sidoors@band.bam"));
+        producer.send(topic, new Client("Кормышев Мастер Андреевич", 79955554433L, "humanbean@on.com"));
 
         boolean messageConsumed = consumer.getLatch().await(10, TimeUnit.SECONDS);
         assertTrue(messageConsumed);

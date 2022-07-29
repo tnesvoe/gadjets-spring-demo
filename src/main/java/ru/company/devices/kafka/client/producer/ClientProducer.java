@@ -1,4 +1,4 @@
-package ru.company.devices.kafka;
+package ru.company.devices.kafka.client.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +9,11 @@ import ru.company.devices.entity.Client;
 
 /*  This class provides high-level thread-safe operations, such as sending data to the provided topic, which is exactly what we do in our send method. */
 @Component
-public class KafkaClientProducer {
+public class ClientProducer {
     @Autowired
     private KafkaTemplate<String, Client> kafkaTemplate;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaClientProducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientProducer.class);
 
     public void send(String topic, Client client) {
         LOGGER.info("sending client='{}' to topic='{}'", client, topic);
