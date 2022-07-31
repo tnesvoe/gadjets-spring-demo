@@ -17,7 +17,7 @@ public class ClientConsumer {
 
     private String newClient;
 
-    @KafkaListener(topics = "${clients}")
+    @KafkaListener(topics = "clients")
     public void receive(Client client) {
         LOGGER.info("received client='{}'", client.toString());
         latch.countDown();

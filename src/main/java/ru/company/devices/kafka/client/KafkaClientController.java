@@ -8,17 +8,12 @@ import ru.company.devices.kafka.client.producer.ClientProducer;
 
 @RestController
 @RequestMapping(value = "/kafka")
-@PropertySource(value={"classpath:application.properties"})
 public class KafkaClientController {
     @Autowired
-    private final ClientProducer producer;
-
-    public KafkaClientController(ClientProducer producer) {
-        this.producer = producer;
-    }
+    private ClientProducer clientProducer;
 
     @PostMapping("/new_client")
     public void postKafka(@RequestParam("message") Client message) {
-        producer.send("clients", message);
+        clientProducer.send("clients", message);
     }
 }

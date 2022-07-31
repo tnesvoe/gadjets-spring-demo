@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.company.devices.entity.Device;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
@@ -44,18 +46,19 @@ public class DeviceRestApiTests {
         Device device = new Device("smartphone", "snapdragon 600", 8, 4096, "realme", "GT NEO2");
         ResponseEntity<String> responseOnPut;
 
-        responseOnPut = restTemplate.exchange("/devices/1",
+        responseOnPut = restTemplate.exchange("/devices",
                 HttpMethod.PUT,
                 new HttpEntity<>(device),
-                String.class);
+                String.class,
+                Collections.singletonMap("id", "1"));
 
         System.out.println(responseOnPut.getBody());
+        System.out.println(responseOnPut.getStatusCode());
     }
 
     @Test
     void testDelete() {
         restTemplate.delete("/devices/1");
-
         // ensure
     }
 }

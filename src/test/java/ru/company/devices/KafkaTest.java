@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /* We also use the @DirtiesContext annotation, which will make sure this context is cleaned and reset between different tests. */
 @SpringBootTest
 @DirtiesContext
-@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9093", "port=9093" })
+@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9020", "port=9020" })
 public class KafkaTest {
     @Autowired
     private ClientConsumer consumer;
@@ -32,18 +32,17 @@ public class KafkaTest {
     @Autowired
     private ClientProducer producer;
 
-    @Value("${clients}")
-    private String topic;
+    private String topic = "clients";
 
     @Test
     public void testEmbeddedKafkaBroker()
             throws Exception {
         producer.send(topic, new Client("Кормышев Мастер Андреевич", 79955554433L, "humanbean@on.com"));
 
-        boolean messageConsumed = consumer.getLatch().await(10, TimeUnit.SECONDS);
+        boolean messageConsumed = consumer.getLatch().await(2, TimeUnit.SECONDS);
         assertTrue(messageConsumed);
 
-        consumer.getLatch().await(10000, TimeUnit.MILLISECONDS);
+        consumer.getLatch().await(2000, TimeUnit.MILLISECONDS);
         assertThat(consumer.getLatch().getCount()).isEqualTo(0);
     }
 }
