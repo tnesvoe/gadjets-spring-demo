@@ -21,6 +21,10 @@ public class ClientApiTests {
 
         ResponseEntity<String> response = restTemplate.getForEntity("/clients", String.class, Collections.singletonMap("name", "Ждан"));
 
-        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK); // некорректная проверка
+
+        // https://vk.com/audios{owner_id}?section=all
+        // %7B {
+        // %7D }
     }
 }
