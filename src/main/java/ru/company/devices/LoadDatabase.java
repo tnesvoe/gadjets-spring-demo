@@ -15,6 +15,8 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     private Client client1 = new Client("Стрелков Дональд Тимофеевич", 79994445566L, "strelkov@memail.com");
+
+    private Client client3 = new Client("Жданов Аввакуум Тимофеевич", 79994445557L, "zhuqzhdano@memail.com");
     private Client client2 = new Client("Сидоров Никифор Геннадиевич", 79955554433L, "sidoors@band.bam");
 
     private Device device1 = new Device("notebook", "celeron 4020", 14.1, 2048, "brand1", "model1");
@@ -26,6 +28,7 @@ public class LoadDatabase {
         return args -> {
             log.info(repository.save(client1) + " загружен");
             log.info(repository.save(client2) + " загружен");
+            log.info(repository.save(client3) + " загружен");
         };
 
     }

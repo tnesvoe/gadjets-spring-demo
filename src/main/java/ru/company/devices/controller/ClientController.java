@@ -24,6 +24,11 @@ public class ClientController {
         return clientRepo.findById(id).orElseThrow(() -> new ClientNotFoundException(id));
     }
 
+    @GetMapping("/clients/{name}")
+    List<Client> getClientByName(@PathVariable String name) {
+        return clientRepo.findByName(name);
+    }
+
     @PostMapping("/clients")
     Client addClient(@RequestBody Client client) {
         return clientRepo.save(client);

@@ -24,11 +24,6 @@ public class KafkaTest {
     @Autowired
     private ClientConsumer consumer;
 
-    static {
-        System.setProperty(EmbeddedKafkaBroker.BROKER_LIST_PROPERTY,
-                "spring.kafka.bootstrap-servers");
-    }
-
     @Autowired
     private ClientProducer producer;
 

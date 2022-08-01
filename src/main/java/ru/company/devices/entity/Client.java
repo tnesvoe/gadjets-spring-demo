@@ -26,7 +26,7 @@ public class Client {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "thirdname", nullable = false)
     private String thirdName;
 
     @Column(name="phone_num", nullable = false)
@@ -90,6 +90,8 @@ public class Client {
         this.phoneNum = phoneNum;
         this.email = email;
     }
+
+
 
     public Client() {
 
